@@ -1,11 +1,9 @@
 public abstract class Edge <T> {
     private T attribute;
-    private Node source;
-    private Node target;
+    private Pair<Node, Node> nodes;
 
     public Edge(Node source, Node target){
-        this.source = source;
-        this.target = target;
+        this.nodes = new Pair<>(source, target);
     }
 
     public Edge(T attribute, Node source, Node target){
@@ -21,16 +19,16 @@ public abstract class Edge <T> {
         this.attribute = attribute;
     }
     public Node getSource(){
-        return this.source;
+        return nodes.first;
     }
     public Node getTarget(){
-        return this.target;
+        return nodes.second;
     }
     public void setSource(Node source){
-        this.source = source;
+        this.nodes.first = source;
     }
     public void setTarget(Node target){
-        this.target = target;
+        this.nodes.second = target;
     }
     public boolean isLabeled(){
         if(attribute instanceof String) return true;
