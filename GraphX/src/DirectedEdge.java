@@ -5,22 +5,20 @@ public class DirectedEdge<T> extends Edge <T> {
     public DirectedEdge(T attribute, Node source, Node target){
         super(attribute, source, target);
     }
-    public Node getSource(){
-        return super.getSource();
+    public Node getSource(){return super.nodes.first;}
+    public Node getTarget(){return super.nodes.second;}
+    public void setSource(Node source){super.nodes.first = source;}
+    public void setTarget(Node target){super.nodes.second = target;}
+    public void getDirection(){
+        System.out.println("Edge direction: " + this.getSource() + " -> " + this.getTarget());
     }
-    public Node getTarget(){
-        return super.getTarget();
+    public void setDirection(Node source, Node target){
+        this.setSource(source);
+        this.setTarget(target);
     }
-    public void setSource(Node source){
-        super.setSource(source);
-    }
-    public void setTarget(Node target){
-        super.setTarget(target);
-    }
-    public boolean isLabeled(){
-        return super.isLabeled();
-    }
-    public boolean isWeighted(){
-        return super.isWeighted();
+    public void reverseDirection(){
+        Node temp = this.getSource();
+        this.setSource(this.getTarget());
+        this.setTarget(temp);
     }
 }
