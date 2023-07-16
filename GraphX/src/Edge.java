@@ -1,34 +1,17 @@
 public abstract class Edge <T> {
-    private T attribute;
-    private Pair<Node, Node> nodes;
-
-    public Edge(Node source, Node target){
-        this.nodes = new Pair<>(source, target);
-    }
-
-    public Edge(T attribute, Node source, Node target){
-        this(source, target);
+    protected T attribute;
+    protected Pair<Node, Node> nodes;
+    public Edge(Node A, Node B){this.nodes = new Pair<>(A, B);}
+    public Edge(T attribute, Node A, Node B){
+        this(A, B);
         this.attribute = attribute;
     }
-
     public T getAttribute() throws EdgeWithoutAttributeException{
         if (this.attribute != null) return this.attribute;
         else throw new EdgeWithoutAttributeException();
     }
     public void setAttribute(T attribute){
         this.attribute = attribute;
-    }
-    public Node getSource(){
-        return nodes.first;
-    }
-    public Node getTarget(){
-        return nodes.second;
-    }
-    public void setSource(Node source){
-        this.nodes.first = source;
-    }
-    public void setTarget(Node target){
-        this.nodes.second = target;
     }
     public boolean isLabeled(){
         if(attribute instanceof String) return true;
@@ -37,5 +20,21 @@ public abstract class Edge <T> {
     public boolean isWeighted(){
         if(attribute instanceof Number) return true;
         else return false;
+    }
+    public Pair<Node, Node> getNodes(){return this.nodes;}
+    public void setNodes(Pair<Node, Node> nodes){this.nodes = nodes;}
+    @Override
+    public String toString() {
+        return "Edge [attribute=" + attribute + ", nodes=" + nodes + "]";
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Edge)) return false;
+        Edge temp = (Edge) obj;
+        return attribute.equals(temp.attribute) && nodes.equals(temp.nodes);
+    }
+    @Override
+    public int hashCode() {
+        return attribute.hashCode() + nodes.hashCode();
     }
 }
