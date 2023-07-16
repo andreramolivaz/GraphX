@@ -1,7 +1,6 @@
 import java.util.Iterator;
 import java.util.List;
 
-
 interface Graph extends Iterable<Node>{
     public void addEdge(Node source, Node target);
     public void addEdge(Node source, Node target, Object attribute);
