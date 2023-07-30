@@ -73,6 +73,16 @@ public class SimpleGraph implements Graph {
          return result;
     }
 
+    @Override
+    public boolean isSubgraph(Graph g) {
+        if (g == null) return false;
+        if (!(g instanceof SimpleGraph)) return false;
+        SimpleGraph sg = (SimpleGraph) g;
+        for (Object e : edges)
+              if (!sg.edges.contains(e)) return false;
+        return true;
+    }
+
     public boolean contains(Graph g){
         if (g == null) return false;
         if (!(g instanceof SimpleGraph)) return false;
